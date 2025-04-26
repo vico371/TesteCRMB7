@@ -23,7 +23,7 @@ Standard User: user1/user123
 
 Performed Actions:
 
-Created contact "Carlos Mendes" (ID: CT-2150)
+Created contact "Carlos kkk" (ID: CT-2150)
 
 Modified account "Acme Corp" (ID: ACC-3012)
 
