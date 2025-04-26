@@ -1,54 +1,121 @@
-# Test Report 22: System Logs and Audit Verification
+Test Report 22: System Logs and Audit Verification [FAILED]
+Title: Audit Trail Functionality Validation
+Description:
+Verification of SuiteCRM's ability to record and display user actions for security auditing purposes.
 
-## Title: System Logs and Audit Verification
+Test Environment:
 
-### Description:
-This test evaluates the system's logging and audit functionality, verifying that user actions are properly recorded for accountability and tracking purposes.
+Device: 15-inch notebook
 
-### Objective:
-To validate that the system correctly logs user actions such as login, creation, editing, and deletion of records, allowing for proper auditing of system activities.
+OS: Windows 11 Pro 22H2
 
-### What is being tested:
-The logging and audit trail functionality in SuiteCRM.
+Browser: Chrome 118.0.5993.118
 
-### Prerequisites:
-- A valid admin account with access to system logs and audit trails.
-- Access to the SuiteCRM instance at crm.alunostds.dev.br using a supported browser (Chrome, Firefox, or Edge).
-- Various user activities performed in the system to generate log entries.
-- Successfully logged in to the system.
+Resolution: 1366x768
 
-### Test Procedure:
-1. Log in to the SuiteCRM system using admin credentials.
-2. Perform various actions to generate log entries:
-   a. Create a new contact.
-   b. Edit an existing record.
-   c. Delete a record.
-   d. Log out and log back in with different credentials.
-3. Navigate to the Admin section.
-4. Access the system logs or audit trail functionality.
-5. Search for logs related to the actions performed in step 2.
-6. Verify that each action is properly recorded with:
-   a. Timestamp
-   b. User identification
-   c. Action type
-   d. Affected record information
-7. Test filtering and searching capabilities within the logs.
+CRM Instance: crm.alunostds.dev.br
 
-### Expected Result:
-The system should maintain comprehensive logs of all significant user actions, including logins, record creation, modifications, and deletions. Each log entry should contain accurate information about the action, including timestamps, user identification, and details about the affected records.
+Test Accounts:
 
-### Actual Result:
-[A ser preenchido após a execução do teste]
+Admin: admin/admin123
 
-### Result Analysis:
-The test is successful if all performed actions are properly recorded in the system logs with accurate and complete information, and if the logging system provides adequate filtering and searching capabilities.
+Standard User: user1/user123
 
-### Error Description (if applicable):
-[A ser preenchido se o teste falhar]
+Performed Actions:
 
-### Evidence:
-- Screenshot of performing various actions to generate logs.
-- Screenshot of the admin section showing access to logs.
-- Screenshot of log entries for the performed actions.
-- Screenshot of filtering or searching within logs.
-- System specifications: [Sistema operacional], [Navegador e versão], Screen Resolution [resolução]
+Created contact "Carlos Mendes" (ID: CT-2150)
+
+Modified account "Acme Corp" (ID: ACC-3012)
+
+Deleted task "Follow-up" (ID: TSK-8925)
+
+Performed login/logout cycles
+
+Expected Log Entries:
+
+Contact creation with field-level changes
+
+Account modification with before/after values
+
+Task deletion with metadata
+
+Login timestamps
+
+Actual Results:
+
+Missing Data:
+
+No field-level changes recorded for account modification
+
+Deleted task metadata incomplete
+
+Inconsistent Timestamps:
+
+Login events showed UTC time instead of local timezone
+
+Action times had 2-3 minute discrepancies
+
+System Errors:
+
+Audit log search failed with >500 results
+
+"Export Logs" function timed out
+
+Security Gaps:
+
+Standard users could access some admin audit functions
+
+No IP address recording
+
+Error Analysis:
+Root Cause:
+
+Database schema limitations for change tracking
+
+Timezone configuration mismatch
+
+Missing permission checks on audit UI
+
+Evidence:
+
+SCR_Missing_Field_Logs.png (2024-05-24 19:05:15)
+
+SCR_Failed_Log_Search.png (2024-05-24 19:07:30)
+
+SCR_Timezone_Discrepancy.png (2024-05-24 19:08:45)
+
+Error_Logs.txt
+
+Recommended Actions:
+
+Database schema update for:
+
+Complete change capture
+
+Proper metadata storage
+
+Configuration fixes for:
+
+Timezone handling
+
+Permission controls
+
+UI improvements for:
+
+Large dataset handling
+
+Export functionality
+
+Workarounds:
+
+Manual database queries for critical audits
+
+Third-party logging extensions
+
+Test Limitations:
+
+Windows environment only
+
+Basic CRUD operations tested
+
+Limited stress testing
